@@ -1,0 +1,40 @@
+import React from "react";
+
+const ProductCard = ({ name, price, status }) => {
+  return (
+    <div className="border rounded-2xl shadow-md p-4 w-60 text-center">
+      <h2 className="font-bold text-lg mb-2">{name}</h2>
+      <p className="text-gray-700">Price: ${price}</p>
+      <p className={status === "In Stock" ? "text-green-600" : "text-red-600"}>
+        Status: {status}
+      </p>
+    </div>
+  );
+};
+
+function App() {
+  // Products data (array of objects)
+  const products = [
+    { name: "Wireless Mouse", price: 25.99, status: "In Stock" },
+    { name: "Keyboard", price: 45.5, status: "Out of Stock" },
+    { name: "Monitor", price: 199.99, status: "In Stock" },
+  ];
+
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-center mb-6">Products List</h1>
+      <div className="flex justify-center gap-6">
+        {products.map((product, index) => (
+          <ProductCard
+            key={index}
+            name={product.name}
+            price={product.price}
+            status={product.status}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
